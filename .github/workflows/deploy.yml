@@ -72,24 +72,20 @@ jobs:
         with:
           ruby-version: "3.2.2"
           bundler-cache: true
-      - name: Update _config.yml ⚙️
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          commitChange: false
-          valueFile: "_config.yml"
-          propertyPath: "giscus.repo"
-          value: ${{ github.repository }}
       - name: Install and Build 🔧
         run: |
+          cd ./docs
           pip3 install --upgrade jupyter
           export JEKYLL_ENV=production
+          bundle install
           bundle exec jekyll build
       - name: Purge unused CSS 🧹
         run: |
+          cd ./docs
           npm install -g purgecss
           purgecss -c purgecss.config.js
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: _site
+          folder: docs/_site

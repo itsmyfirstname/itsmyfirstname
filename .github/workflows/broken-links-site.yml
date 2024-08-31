@@ -23,19 +23,20 @@ jobs:
         uses: fjogeleit/yaml-update-action@main
         with:
           commitChange: false
-          valueFile: "_config.yml"
+          valueFile: "docs/_config.yml"
           changes: |
             {
-              "giscus.repo": "${{ github.repository }}",
               "baseurl": ""
             }
       - name: Install and Build 🔧
         run: |
+          cd docs
           pip3 install --upgrade jupyter
           export JEKYLL_ENV=production
           bundle exec jekyll build
       - name: Purge unused CSS 🧹
         run: |
+          cd docs
           npm install -g purgecss
           purgecss -c purgecss.config.js
       - name: Link Checker 🔗
@@ -43,4 +44,4 @@ jobs:
         with:
           fail: true
           # only check local links
-          args: --offline --remap '_site(/?.*)/assets/(.*) _site/assets/$2' --verbose --no-progress '_site/**/*.html'
+          args: --offline --remap '_site(/?.*)/assets/(.*) _site/assets/$2' --verbose --no-progress 'docs/_site/**/*.html'

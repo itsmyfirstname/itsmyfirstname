@@ -33,11 +33,28 @@
   ],
   "projects": [
     {
+      "name": "Microservice Modernization",
+      "summary": "Refactored 12 repositories by addressing technical debt and improving code quality after several years without linting or formatting. I standardized configurations, removed unused functions and variables, and eliminated outdated comments, while also implementing linting and formatting practices. Currently, I’m consolidating the repos into a monorepo in preparation for migration to SaaS GitHub.",
+      "highlights": [
+        "Code Optimization",
+        "Refactoring",
+        "Technical Debt Reduction",
+        "Codebase Modernization" ,
+        "Software Maintenance"
+        
+      ],
+      "startDate": "2025-03"
+    },
+    {
       "name": "Custom Terraform Provider",
       "summary": "Resolved issues with a buggy API that we were required to use for defining a team's data product by creating a wrapper to better manage permissions and resources. This solution evolved into a Python package and GitHub Action for processing team definitions.",
       "highlights": [
+        "Automation",
         "GitHub Actions",
-        "Enterprise Tooling"
+        "API Integration",
+        "Resource Management",
+        "Permissions Management",
+        "Data Product Development"
       ],
       "startDate": "2025-01",
       "endDate": "2025-04"
@@ -46,19 +63,30 @@
       "name": "Terraform CDK Conversion",
       "summary": "Migrated Terraform module definitions to Python to address limitations in logic. This migration allowed selective deployment of expensive Databricks jobs, reducing costs and streamlining CI pipelines. Leveraging Terraform's CDK for Python enabled the creation of abstract base models with smart defaults and simplified configuration using type hints.",
       "highlights": [
-        "GitHub Actions",
-        "Enterprise Tooling"
+        "Terraform Migration",
+        "Cloud Infrastructure",
+        "Databricks Jobs",
+        "Continuous Integration (CI)",
+        "Modular Design",
+        "Abstraction",
+        "Type Hinting"
       ],
       "startDate": "2024-03",
       "endDate": "2025-01"
     },
     {
       "name": "GitHub Action Automation",
-      "summary": "Created reusable organizational GitHub Actions and workflows to improve efficiency.",
+      "summary": "Created reusable organizational GitHub Actions and workflows to improve efficiency, including AI-driven PR descriptions using a RAG template, a ServiceNow API for managing release tickets, and compliance code scanning workflows, enabling streamlined processes and reducing duplication in development tasks.",
       "highlights": [
-        "ServiceNow API for managing release tickets",
-        "AI-driven PR descriptions using a RAG template",
-        "Compliance code scanning workflows"
+        "GitHub Actions",
+        "Workflow Automation",
+        "Process Improvement",
+        "Efficiency Optimization",
+        "AI-Driven Development",
+        "Pull Request Automation",
+        "ServiceNow Integration",
+        "Compliance Workflows",
+        "DevOps Tools"
       ],
       "startDate": "2024-03",
       "endDate": "2025-03"
@@ -67,39 +95,45 @@
       "name": "PySpark File Ingestion",
       "summary": "Developed a PySpark ETL job in Databricks to process files transferred from NAS to S3, organizing disordered file paths and inconsistent naming conventions while aggregating contents.",
       "highlights": [
-        "Databricks",
         "PySpark",
-        "ETL"
+        "ETL (Extract, Transform, Load)",
+        "Databricks",
+        "Data Processing",
+        "File Ingestion",
+        "Cloud Storage (S3)",
+        "Data Transformation",
+        "Data Organization",
+        "File Management"
       ],
       "startDate": "2022-03",
       "endDate": "2025-03"
     },
     {
-      "name": "Python CICD Library",
-      "summary": "Converted Jenkinsfile and Groovy scripts to pure Python to create a more testable script runner.",
+      "name": "CloudBees Jenkins Optimization",
+      "summary": "Converted Jenkinsfile and Groovy scripts to pure Python to create a more testable script runner. This was necessary due to resource limitations in CloudBees Jenkins, which often resulted in testing pipelines exceeding an hour. The conversion enabled us to scale horizontally across five CloudBees instances, improving efficiency and reducing testing time.",
       "highlights": [
-        "Testable CI/CD",
-        "Robust Config"
+        "Jenkins",
+        "CloudBees",
+        "Python Development",
+        "Script Conversion",
+        "Testability",
+        "Resource Optimization",
+        "Horizontal Scalability",
+        "Pipeline Efficiency"
       ],
       "startDate": "2022-03",
       "endDate": "2022-06"
     },
     {
-      "name": "DevEx: Jenkins Enhancements",
-      "summary": "Accepted feature requests to enhance developer experience and developer productivity",
-      "highlights": [
-        "Cloudbees scaling",
-        "Portable DevEx"
-      ],
-      "startDate": "2021-06",
-      "endDate": "2022-03"
-    },
-    {
       "name": "Microservice Development and DevOps",
-      "summary": "Developed a Flask API and managed CI/CD pipelines for efficient deployment.",
+      "summary": "Developed a Flask API and managed CI/CD pipelines for efficient deployment, including implementing logic for blue-green deployments to minimize downtime. Additionally, implemented Role-Based Access Control (RBAC) using LDAP as an authentication server",
       "highlights": [
-        "Helm",
-        "Blue Green Deployments"
+        "API Development",
+        "CI/CD (Continuous Integration/Continuous Deployment)",
+        "Blue-Green Deployments",
+        "Role-Based Access Control (RBAC)",
+        "Deployment Automation"
+        
       ],
       "startDate": "2018-01",
       "endDate": "2021-06"
@@ -111,10 +145,10 @@
       "location": "Hamden, CT",
       "url": "https://www.qu.edu/",
       "area": "Computer Information Systems",
-      "studyType": "BA",
+      "studyType": "Bachelor of Science",
       "startDate": "2014-09-01",
       "endDate": "2018-05-01",
-      "score": "10",
+      "score": "3.7",
       "courses": [
         "Econometrics",
         "Database Design",
@@ -138,22 +172,31 @@
       "name": "Devops",
       "level": "Senior",
       "keywords": [
+        "Docker/Podman",
+        "Bash",
+        "Go",
         "Jenkins",
-        "AWS",
-        "CDKTF",
-        "Terraform",
-        "Actions"
+        "Please Build",
+        "Python"
       ]
     },
     {
       "name": "Backend",
       "level": "Senior",
       "keywords": [
-        "Python",
-        "Postgres",
+        "Openshift",
+        "Flask",
+        "TypeScript",
+        "Postgres"
+      ]
+    },
+    {
+      "name": "Data Engineer",
+      "level": "Junior",
+      "keywords": [
+        "PySpark",
         "Databricks",
-        "Airflow",
-        "PySpark"
+        "Airflow"
       ]
     }
   ],
@@ -162,14 +205,25 @@
       "name": "Homelab",
       "icon": "fa-solid fa-tag",
       "keywords": [
-        "TrueNas Scale"
+        "Truenas Scale",
+        "Self Hosted Services"
       ]
     },
     {
       "name": "3D Printing",
       "icon": "fa-solid fa-tag",
       "keywords": [
-        "AnkerMake M5"
+        "AnkerMake M5",
+        "Auto Desk Fusion"
+      ]
+    },
+    {
+      "name": "Horology",
+      "icon": "fa-solid fa-tag",
+      "keywords": [
+        "Collecting",
+        "Repair",
+        "Building"
       ]
     }
   ]

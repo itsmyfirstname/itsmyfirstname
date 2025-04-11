@@ -6,7 +6,7 @@
     "email": "hi@matthays.dev",
     "phone": "910-304-2716",
     "url": "https://matthays.dev",
-    "summary": "Software Engineer with a strong background in DevOps and data engineering. Experienced in developing scalable solutions and automating workflows using AWS, Python, and Databricks. Dedicated to improving efficiency and simplifying processes in enterprise environments.",
+    "summary": "Versatile Software Engineer with a solid background in DevOps and data engineering. Skilled in developing scalable solutions and automating workflows using AWS, Python, and Databricks, with a commitment to enhancing efficiency and driving process improvements across teams.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -23,9 +23,9 @@
       "url": "https://cigna.com",
       "startDate": "2018-05-01",
       "endDate": "present",
-      "summary": "Mostly Devops with some data engineering.",
+      "summary": "Focused on DevOps practices and data engineering, driving improvements in infrastructure and deployment processes.",
       "highlights": [
-        "Devops",
+        "DevOps",
         "Python",
         "Databricks"
       ]
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "name": "Devops",
+      "name": "DevOps",
       "level": "Senior",
       "keywords": [
         "Docker/Podman",

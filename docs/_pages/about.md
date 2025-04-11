@@ -2,12 +2,12 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Here is where my professional expertise meets creative tinkering, with periodic existential crises. Join me on this journey of exploration inspiration and anxiety.
 
 profile:
   align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image: 1.jpg
+  image_circular: true # crops the image to make it circular
   # more_info: >
   #   <p>555 your office number</p>
   #   <p>123 your address street</p>

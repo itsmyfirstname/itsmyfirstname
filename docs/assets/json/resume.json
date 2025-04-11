@@ -5,8 +5,8 @@
     "image": "",
     "email": "hi@matthays.dev",
     "phone": "910-304-2716",
-    "url": "https://itsmyfirstname.github.io/itsmyfirstname/",
-    "summary": "Forever student",
+    "url": "https://matthays.dev",
+    "summary": "USMC vet turned Software Engineer",
     "location": {
       "address": "",
       "postalCode": "",
@@ -18,13 +18,91 @@
   },
   "work": [
     {
-      "name": "Cigna",
+      "name": "The Cigna Group",
       "position": "Senior Engineering Advisor",
       "url": "https://cigna.com",
       "startDate": "2018-05-01",
       "endDate": "present",
       "summary": "Mostly Devops with some data engineering.",
-      "highlights": ["Devops", "Python", "Databricks"]
+      "highlights": [
+        "Devops",
+        "Python",
+        "Databricks"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Self Hosted Action Runners",
+      "summary": "Developed an alternative to GitHub-hosted runners in AWS, creating a scalable ecosystem of on-demand VMs using EC2 Fleet, API Gateway, and Lambda, supported by a tagging strategy.",
+      "highlights": [
+        "GitHub Actions",
+        "Enterprise Tooling"
+      ],
+      "startDate": "2024-09",
+      "endDate": "2025-01"
+    },
+    {
+      "name": "Custom Terraform Provider",
+      "summary": "Managed the Enterprise Databricks platform through a buggy API that lacked adherence to RESTful principles. To resolve issues with permissions and resource management, we created a Terraform provider that wrapped the API, enabling effective state management. This evolved into a Python package and GitHub Action to process team definitions from a JSON file.",
+      "highlights": [
+        "GitHub Actions",
+        "Enterprise Tooling"
+      ],
+      "startDate": "2024-03-01",
+      "endDate": "2025-03-25"
+    },
+    {
+      "name": "Terraform CDK Conversion",
+      "summary": "Migrated Terraform module definitions to Python to address limitations in logic. This migration allowed selective deployment of expensive Databricks jobs, reducing costs and streamlining CI pipelines. Leveraging Terraform's CDK for Python enabled the creation of abstract base models with smart defaults and simplified configuration using type hints.",
+      "highlights": [
+        "GitHub Actions",
+        "Enterprise Tooling"
+      ],
+      "startDate": "2024-03-01",
+      "endDate": "2025-03-25"
+    },
+    {
+      "name": "Python CICD Library",
+      "summary": "Converted Jenkinsfile and Groovy scripts to pure Python to create a more testable script runner.",
+      "highlights": [
+        "GitHub Actions",
+        "Enterprise Tooling"
+      ],
+      "startDate": "2024-03-01",
+      "endDate": "2025-03-25"
+    },
+    {
+      "name": "GitHub Action Automation",
+      "summary": "Created reusable organizational GitHub Actions and workflows to improve efficiency.",
+      "highlights": [
+        "ServiceNow API for managing release tickets",
+        "AI-driven PR descriptions using a RAG template",
+        "Compliance code scanning workflows"
+      ],
+      "startDate": "2024-03-01",
+      "endDate": "2025-03-25"
+    },
+    {
+      "name": "PySpark File Ingestion",
+      "summary": "Developed a PySpark ETL job in Databricks to process files transferred from NAS to S3, organizing disordered file paths and inconsistent naming conventions while aggregating contents.",
+      "highlights": [
+        "Databricks",
+        "PySpark",
+        "ETL"
+      ],
+      "startDate": "2024-03-01",
+      "endDate": "2025-03-25"
+    },
+    {
+      "name": "Microservice Development and DevOps",
+      "summary": "Developed a Flask API and managed CI/CD pipelines for efficient deployment.",
+      "highlights": [
+        "Helm",
+        "Kubernetes"
+      ],
+      "startDate": "2018-01",
+      "endDate": "2020-03"
     }
   ],
   "education": [
@@ -33,23 +111,29 @@
       "location": "Hamden, CT",
       "url": "https://www.qu.edu/",
       "area": "Computer Information Systems",
-      "studyType": "BA/s",
+      "studyType": "BA",
       "startDate": "2014-09-01",
       "endDate": "2018-05-01",
       "score": "10",
-      "courses": ["Econometrics","Database Design", "SDLC", "Python"]
-    }
-  ],
-  "awards": [
-    {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "courses": [
+        "Econometrics",
+        "Database Design",
+        "SDLC",
+        "Python"
+      ]
     }
   ],
   "skills": [
+    {
+      "name": "Cloud",
+      "level": "Senior",
+      "keywords": [
+        "AWS",
+        "CDKTF",
+        "Terraform",
+        "Actions"
+      ]
+    },
     {
       "name": "Devops",
       "level": "Senior",
@@ -70,7 +154,6 @@
         "Databricks",
         "Airflow",
         "PySpark"
-
       ]
     }
   ],
@@ -79,7 +162,7 @@
       "name": "Homelab",
       "icon": "fa-solid fa-tag",
       "keywords": [
-        "Truenas Scale"
+        "TrueNas Scale"
       ]
     },
     {

@@ -6,7 +6,7 @@
     "email": "hi@matthays.dev",
     "phone": "910-304-2716",
     "url": "https://matthays.dev",
-    "summary": "USMC vet turned Software Engineer",
+    "summary": "Software Engineer with a strong background in DevOps and data engineering. Experienced in developing scalable solutions and automating workflows using AWS, Python, and Databricks. Dedicated to improving efficiency and simplifying processes in enterprise environments.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -33,24 +33,14 @@
   ],
   "projects": [
     {
-      "name": "Self Hosted Action Runners",
-      "summary": "Developed an alternative to GitHub-hosted runners in AWS, creating a scalable ecosystem of on-demand VMs using EC2 Fleet, API Gateway, and Lambda, supported by a tagging strategy.",
-      "highlights": [
-        "GitHub Actions",
-        "Enterprise Tooling"
-      ],
-      "startDate": "2024-09",
-      "endDate": "2025-01"
-    },
-    {
       "name": "Custom Terraform Provider",
-      "summary": "Managed the Enterprise Databricks platform through a buggy API that lacked adherence to RESTful principles. To resolve issues with permissions and resource management, we created a Terraform provider that wrapped the API, enabling effective state management. This evolved into a Python package and GitHub Action to process team definitions from a JSON file.",
+      "summary": "Resolved issues with a buggy API that we were required to use for defining a team's data product by creating a wrapper to better manage permissions and resources. This solution evolved into a Python package and GitHub Action for processing team definitions.",
       "highlights": [
         "GitHub Actions",
         "Enterprise Tooling"
       ],
-      "startDate": "2024-03-01",
-      "endDate": "2025-03-25"
+      "startDate": "2025-01",
+      "endDate": "2025-04"
     },
     {
       "name": "Terraform CDK Conversion",
@@ -59,18 +49,8 @@
         "GitHub Actions",
         "Enterprise Tooling"
       ],
-      "startDate": "2024-03-01",
-      "endDate": "2025-03-25"
-    },
-    {
-      "name": "Python CICD Library",
-      "summary": "Converted Jenkinsfile and Groovy scripts to pure Python to create a more testable script runner.",
-      "highlights": [
-        "GitHub Actions",
-        "Enterprise Tooling"
-      ],
-      "startDate": "2024-03-01",
-      "endDate": "2025-03-25"
+      "startDate": "2024-03",
+      "endDate": "2025-01"
     },
     {
       "name": "GitHub Action Automation",
@@ -80,8 +60,8 @@
         "AI-driven PR descriptions using a RAG template",
         "Compliance code scanning workflows"
       ],
-      "startDate": "2024-03-01",
-      "endDate": "2025-03-25"
+      "startDate": "2024-03",
+      "endDate": "2025-03"
     },
     {
       "name": "PySpark File Ingestion",
@@ -91,18 +71,38 @@
         "PySpark",
         "ETL"
       ],
-      "startDate": "2024-03-01",
-      "endDate": "2025-03-25"
+      "startDate": "2022-03",
+      "endDate": "2025-03"
+    },
+    {
+      "name": "Python CICD Library",
+      "summary": "Converted Jenkinsfile and Groovy scripts to pure Python to create a more testable script runner.",
+      "highlights": [
+        "Testable CI/CD",
+        "Robust Config"
+      ],
+      "startDate": "2022-03",
+      "endDate": "2022-06"
+    },
+    {
+      "name": "DevEx: Jenkins Enhancements",
+      "summary": "Accepted feature requests to enhance developer experience and developer productivity",
+      "highlights": [
+        "Cloudbees scaling",
+        "Portable DevEx"
+      ],
+      "startDate": "2021-06",
+      "endDate": "2022-03"
     },
     {
       "name": "Microservice Development and DevOps",
       "summary": "Developed a Flask API and managed CI/CD pipelines for efficient deployment.",
       "highlights": [
         "Helm",
-        "Kubernetes"
+        "Blue Green Deployments"
       ],
       "startDate": "2018-01",
-      "endDate": "2020-03"
+      "endDate": "2021-06"
     }
   ],
   "education": [

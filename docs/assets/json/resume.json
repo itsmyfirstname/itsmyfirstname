@@ -43,7 +43,8 @@
         "Software Maintenance"
         
       ],
-      "startDate": "2025-03"
+      "startDate": "2025-03-01",
+      "endDate": "present"
     },
     {
       "name": "Custom Terraform Provider",
@@ -56,8 +57,8 @@
         "Permissions Management",
         "Data Product Development"
       ],
-      "startDate": "2025-01",
-      "endDate": "2025-04"
+      "startDate": "2025-01-01",
+      "endDate": "2025-04-01"
     },
     {
       "name": "Terraform CDK Conversion",
@@ -88,7 +89,7 @@
         "Compliance Workflows",
         "DevOps Tools"
       ],
-      "startDate": "2024-03",
+      "startDate": "2023-01-01",
       "endDate": "2025-03"
     },
     {
@@ -105,8 +106,25 @@
         "Data Organization",
         "File Management"
       ],
-      "startDate": "2022-03",
-      "endDate": "2025-03"
+      "startDate": "2023-01-01",
+      "endDate": "2023-0601"
+    },
+    {
+      "name": "DevEx Optimization",
+      "summary": "Curated a container based approach for build environments for developers and for CI environments. Built out pipelines to enable dev teams to deliver at an increased pace",
+      "highlights": [
+        "PySpark",
+        "ETL (Extract, Transform, Load)",
+        "Databricks",
+        "Data Processing",
+        "File Ingestion",
+        "Cloud Storage (S3)",
+        "Data Transformation",
+        "Data Organization",
+        "File Management"
+      ],
+      "startDate": "2023-01-01",
+      "endDate": "2023-0601"
     },
     {
       "name": "CloudBees Jenkins Optimization",
@@ -121,8 +139,8 @@
         "Horizontal Scalability",
         "Pipeline Efficiency"
       ],
-      "startDate": "2022-03",
-      "Ò": "2022-06"
+      "startDate": "2022-03-01",
+      "endDate": "2023-01-01"
     },
     {
       "name": "Microservice Development and DevOps",
@@ -133,10 +151,9 @@
         "Blue-Green Deployments",
         "Role-Based Access Control (RBAC)",
         "Deployment Automation"
-        
       ],
-      "startDate": "2018-01",
-      "endDate": "2021-06"
+      "startDate": "2018-01-01",
+      "endDate": "2021-06-01"
     }
   ],
   "education": [

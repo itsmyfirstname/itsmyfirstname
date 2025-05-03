@@ -34,7 +34,7 @@
   "projects": [
     {
       "name": "Microservice Modernization",
-      "summary": "Refactored 12 repositories by addressing technical debt and improving code quality after several years without linting or formatting. I standardized configurations, removed unused functions and variables, and eliminated outdated comments, while also implementing linting and formatting practices. Currently, I’m consolidating the repos into a monorepo in preparation for migration to SaaS GitHub.",
+      "summary": "Currently consolidating a collection of repos into a monorepo in preparation for migration to SaaS GitHub Actions.",
       "highlights": [
         "Code Optimization",
         "Refactoring",

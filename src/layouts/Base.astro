@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { SITE_TITLE, SITE_DESCRIPTION, EMAIL, GITHUB } from "../consts";
+import { getProjects } from "../lib/projects";
 
 interface Props {
   title?: string;
@@ -13,9 +14,10 @@ const fullTitle = title ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname.replace(/\/?$/, "/");
 
+const hasProjects = (await getProjects()).length > 0;
 const nav = [
   { href: "/blog/", label: "blog" },
-  { href: "/projects/", label: "projects" },
+  ...(hasProjects ? [{ href: "/projects/", label: "projects" }] : []),
   { href: "/repositories/", label: "repos" },
   { href: "/cv/", label: "resume" },
 ];

@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects for URLs from the old Jekyll site.
+/feed.xml                                         /rss.xml                     301
+/2024/09/03/Expanding-My-Local-AI-Capabilities.html /blog/litellm-open-webui/  301

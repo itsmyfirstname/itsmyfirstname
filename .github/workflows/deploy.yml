@@ -13,8 +13,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: deploy
-  cancel-in-progress: true
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   deploy:

@@ -24,8 +24,8 @@ preview: build ## Serve the production build locally
 	npm run preview
 
 post: ## Create a draft post: make post title="My post title"
-	@test -n "$(title)" || { echo 'usage: make post title="My post title"'; exit 1; }
-	@node scripts/new-post.mjs "$(title)"
+	@test -n "$$title" || { echo 'usage: make post title="My post title"'; exit 1; }
+	@node scripts/new-post.mjs "$$title"
 
 clean: ## Remove build output and caches
 	rm -rf dist .astro

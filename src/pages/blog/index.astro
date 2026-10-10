@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import PostList from "../../components/PostList.astro";
-import { getPosts } from "../../lib/posts";
+import { getPosts, tagSlug } from "../../lib/posts";
 
 const posts = await getPosts();
 const tags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
@@ -15,7 +15,7 @@ const tags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
       <ul class="tags">
         {tags.map((t) => (
           <li>
-            <a href={`/blog/tags/${t}/`}>#{t}</a>
+            <a href={`/blog/tags/${tagSlug(t)}/`}>#{t}</a>
           </li>
         ))}
       </ul>

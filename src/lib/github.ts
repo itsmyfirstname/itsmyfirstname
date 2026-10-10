@@ -25,7 +25,8 @@ let cached: Promise<GitHubStats | null> | undefined;
 /**
  * Fetches profile stats and featured repos from the GitHub GraphQL API at build time.
  * Needs GITHUB_TOKEN (set automatically in Actions; locally: `GITHUB_TOKEN=$(gh auth token) npm run dev`).
- * Returns null instead of failing the build when the token is missing or the API errors.
+ * Locally, returns null (the page shows a placeholder) when the token is missing or the API errors.
+ * In CI it throws instead, so a flaky API call fails the build rather than publishing the placeholder.
  */
 export function getGitHubStats(): Promise<GitHubStats | null> {
   cached ??= load();
@@ -35,6 +36,7 @@ export function getGitHubStats(): Promise<GitHubStats | null> {
 async function load(): Promise<GitHubStats | null> {
   const token = import.meta.env.GITHUB_TOKEN ?? process.env.GITHUB_TOKEN;
   if (!token) {
+    if (process.env.CI) throw new Error("[github] GITHUB_TOKEN is required in CI");
     console.warn("[github] GITHUB_TOKEN not set, skipping GitHub stats");
     return null;
   }
@@ -50,7 +52,7 @@ async function load(): Promise<GitHubStats | null> {
       issues { totalCount }
       contributionsCollection { totalCommitContributions restrictedContributionsCount }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) { totalCount }
-      repositories(ownerAffiliations: OWNER, isFork: false, first: 100) { nodes { stargazerCount } }
+      repositories(ownerAffiliations: OWNER, isFork: false, first: 100, orderBy: { field: STARGAZERS, direction: DESC }) { nodes { stargazerCount } }
     }
     ${repoQueries}
   }`;
@@ -76,6 +78,7 @@ async function load(): Promise<GitHubStats | null> {
       repos: Object.values(repos).filter(Boolean) as Repo[],
     };
   } catch (err) {
+    if (process.env.CI) throw new Error(`[github] failed to fetch stats: ${err}`);
     console.warn(`[github] failed to fetch stats: ${err}`);
     return null;
   }

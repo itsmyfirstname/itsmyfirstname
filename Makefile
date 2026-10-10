@@ -3,7 +3,7 @@ GITHUB_TOKEN ?= $(shell gh auth token 2>/dev/null)
 export GITHUB_TOKEN
 
 .DEFAULT_GOAL := help
-.PHONY: help install dev build preview post clean
+.PHONY: help install dev build preview post project clean
 
 help: ## Show available targets
 	@grep -E '^[a-z]+:.*## ' $(MAKEFILE_LIST) | awk -F ':.*## ' '{printf "  %-10s %s\n", $$1, $$2}'
@@ -25,7 +25,11 @@ preview: build ## Serve the production build locally
 
 post: ## Create a draft post: make post title="My post title"
 	@test -n "$$title" || { echo 'usage: make post title="My post title"'; exit 1; }
-	@node scripts/new-post.mjs "$$title"
+	@node scripts/new.mjs post "$$title"
+
+project: ## Create a draft project write-up: make project title="Project name"
+	@test -n "$$title" || { echo 'usage: make project title="Project name"'; exit 1; }
+	@node scripts/new.mjs project "$$title"
 
 clean: ## Remove build output and caches
 	rm -rf dist .astro

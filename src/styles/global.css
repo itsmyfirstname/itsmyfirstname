@@ -124,7 +124,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
 .card:hover { border-color: var(--accent); }
 .card img { display: block; height: 3rem; width: auto; margin-bottom: 0.75rem; }
 .card strong { display: block; }
-.card span { color: var(--muted); font-size: 0.9rem; }
+.card > span { display: block; color: var(--muted); font-size: 0.9rem; }
 
 @media print {
   .site-header, .site-footer, .no-print { display: none !important; }

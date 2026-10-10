@@ -22,6 +22,19 @@ draft: false
 
 Images for a post can go next to it (`![alt](./diagram.png)`) or in `public/img/`.
 
+## Writing up a project
+
+```sh
+make project title="Jenkins to GitHub Actions"  # creates src/content/projects/jenkins-to-github-actions.md
+```
+
+The file is a draft with front matter (`category: work|fun`, `tags`, `startDate`, optional `endDate`,
+`order`) and section headings (Context, Problem, What I did, Outcome, Stack, Lessons learned). Each section
+has an HTML comment saying what goes there, so you can fill it in yourself or hand the file to an agent to
+draft from your notes. Comments are stripped at build time, so a leftover one never reaches the site.
+
+Like posts, `draft: true` keeps a project out of the built site; set `draft: false` to publish.
+
 ## Where things live
 
 | Path                     | What                                  |

@@ -9,7 +9,6 @@ export default defineConfig({
   // Keep the old Jekyll URLs working.
   redirects: {
     "/projects/Expanding My Local AI Capabilities": "/blog/litellm-open-webui",
-    "/projects/ct-gh-actions-migration": "/projects/jenkins-to-actions",
   },
   markdown: {
     shikiConfig: {

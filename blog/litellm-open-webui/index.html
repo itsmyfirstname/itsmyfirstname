@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Open Web UI to LiteLLM: Expanding My Local AI Capabilities · Matt Hays</title><meta name="description" content="Extending a homelab Open Web UI + Ollama setup with a LiteLLM proxy to reach Claude, OpenAI and more."><link rel="canonical" href="https://matthays.dev/blog/litellm-open-webui/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Matt Hays" href="/rss.xml"><meta property="og:type" content="article"><meta property="og:title" content="Open Web UI to LiteLLM: Expanding My Local AI Capabilities · Matt Hays"><meta property="og:description" content="Extending a homelab Open Web UI + Ollama setup with a LiteLLM proxy to reach Claude, OpenAI and more."><meta property="og:url" content="https://matthays.dev/blog/litellm-open-webui/"><meta property="og:site_name" content="Matt Hays"><meta name="twitter:card" content="summary"><script>
+      try {
+        const t = localStorage.getItem("theme");
+        if (t) document.documentElement.dataset.theme = t;
+      } catch {}
+    </script><style>:root{--bg:#fdfdfc;--fg:#1c1c1c;--muted:#666;--border:#e4e4e0;--accent:#1f6feb;--code-bg:#f4f4f2;--max:42rem;color-scheme:light}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121212;--fg:#e6e6e6;--muted:#9a9a9a;--border:#2a2a2a;--accent:#58a6ff;--code-bg:#1b1b1b;color-scheme:dark}}:root[data-theme=dark]{--bg:#121212;--fg:#e6e6e6;--muted:#9a9a9a;--border:#2a2a2a;--accent:#58a6ff;--code-bg:#1b1b1b;color-scheme:dark}*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{max-width:var(--max);background:var(--bg);color:var(--fg);margin:0 auto;padding:0 1rem;font:1.0625rem/1.7 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--accent);text-underline-offset:.15em}a:hover{text-decoration-thickness:2px}img{max-width:100%;height:auto}h1,h2,h3{line-height:1.25}h1{margin:0 0 .5rem;font-size:1.9rem}h2{margin-top:2.25rem;font-size:1.35rem}hr{border:0;border-top:1px solid var(--border);margin:2rem 0}.muted{color:var(--muted)}.site-header{border-bottom:1px solid var(--border);flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem 1.5rem;margin-bottom:2.5rem;padding:1.5rem 0;display:flex}.brand{color:var(--fg);font-size:1.1rem;font-weight:700;text-decoration:none}.site-header nav{align-items:center;gap:1.1rem;display:flex}.site-header nav a{color:var(--muted);text-decoration:none}.site-header nav a:hover,.site-header nav a[aria-current=page]{color:var(--fg)}#theme-toggle{border:1px solid var(--border);color:var(--fg);cursor:pointer;background:0 0;border-radius:6px;padding:.35rem;line-height:0}.site-footer{border-top:1px solid var(--border);color:var(--muted);flex-wrap:wrap;justify-content:space-between;gap:.5rem;margin:4rem 0 2rem;padding-top:1.25rem;font-size:.9rem;display:flex}.site-footer .links{gap:1rem;display:flex}.site-footer a{color:var(--muted)}.post-list{margin:0;padding:0;list-style:none}.post-list li{align-items:baseline;gap:1rem;padding:.4rem 0;display:flex}.post-list time{color:var(--muted);font-variant-numeric:tabular-nums;flex-shrink:0;min-width:6.5rem;font-size:.9rem}@media (width<=30rem){.post-list li{flex-direction:column;gap:0;padding:.6rem 0}}.tags{flex-wrap:wrap;gap:.4rem;margin:.5rem 0 0;padding:0;list-style:none;display:flex}.tags li a,.tag{border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:.1rem .5rem;font-size:.8rem;text-decoration:none}.prose pre{border:1px solid var(--border);border-radius:8px;padding:1rem;font-size:.875rem;line-height:1.5;overflow-x:auto}.prose :not(pre)>code{background:var(--code-bg);border-radius:4px;padding:.1em .35em;font-size:.9em}.prose blockquote{border-left:3px solid var(--border);color:var(--muted);margin:1.5rem 0;padding-left:1rem}.prose table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}.prose th,.prose td{border:1px solid var(--border);padding:.4rem .6rem}:root[data-theme=dark] .astro-code,:root[data-theme=dark] .astro-code span{color:var(--shiki-dark)!important;background-color:var(--shiki-dark-bg)!important}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .astro-code,:root:not([data-theme=light]) .astro-code span{color:var(--shiki-dark)!important;background-color:var(--shiki-dark-bg)!important}}.cards{grid-template-columns:repeat(auto-fill,minmax(12rem,1fr));gap:1rem;display:grid}.card{border:1px solid var(--border);color:var(--fg);border-radius:10px;padding:1rem;text-decoration:none;display:block}.card:hover{border-color:var(--accent)}.card img{width:auto;height:3rem;margin-bottom:.75rem;display:block}.card strong{display:block}.card span{color:var(--muted);font-size:.9rem}@media print{.site-header,.site-footer,.no-print{display:none!important}body{max-width:none;font-size:10.5pt;line-height:1.45}a{color:inherit;text-decoration:none}}
+</style></head><body><header class="site-header"><a class="brand" href="/">Matt Hays</a><nav><a href="/blog/" aria-current="page">blog</a><a href="/projects/">projects</a><a href="/repositories/">repos</a><a href="/cv/">resume</a><button id="theme-toggle" type="button" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path></svg></button></nav></header><main><article class="prose"><h1>Open Web UI to LiteLLM: Expanding My Local AI Capabilities</h1><p class="muted"><time datetime="2024-09-03T00:00:00.000Z">Sep 3, 2024</time></p><ul class="tags"><li><a href="/blog/tags/homelab/">#homelab</a></li><li><a href="/blog/tags/ai/">#ai</a></li></ul><p>Ever feel like you’re outgrowing your current AI setup? That’s exactly where I found myself recently with my TrueNAS Scale instance. While Open Web UI was serving me well and Ollama was doing its thing, the limitations were becoming increasingly apparent. That’s when I discovered LiteLLM - a proxy that could potentially open the door to a world of AI models. Here’s my journey of setting it up and the hurdles I overcame along the way.</p>
+<h2 id="the-starting-point">The Starting Point</h2>
+<p>My home lab setup was fairly straightforward:</p>
+<ul>
+<li>Open Web UI running on TrueNAS Scale</li>
+<li>Ollama for local models</li>
+<li>A growing frustration with their limitations</li>
+</ul>
+<p>When I learned about LiteLLM, a proxy service that could extend my Open Web UI to communicate with various commercial and open-source models, I knew it was time for an upgrade.</p>
+<h2 id="planning-the-infrastructure">Planning the Infrastructure</h2>
+<p>I could have simply run the LiteLLM proxy as a container on my NAS, but anyone who’s dealt with ZFS docker volume datasets knows they can be a pain to manage. Instead, I opted for a cleaner approach: dedicated VMs on Proxmox.</p>
+<p>The plan was simple:</p>
+<ol>
+<li>One VM for the LiteLLM proxy server</li>
+<li>Another VM dedicated to PostgreSQL (thinking ahead for future projects)</li>
+</ol>
+<h2 id="setting-up-the-virtual-machines">Setting Up the Virtual Machines</h2>
+<h3 id="first-hurdle-qemu-guest-agent">First Hurdle: QEMU Guest Agent</h3>
+<p>After creating my Ubuntu Server VM on Proxmox, I immediately hit my first snag. The QEMU guest agent wasn’t enabled by default. This agent is crucial as it allows the host machine to reallocate memory dynamically when needed.</p>
+<p>The fix was straightforward:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">apt</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> qemu-guest-agent</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">systemctl</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> start</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> qemu-guest-agent</span></span></code></pre>
+<p>Just like that, we were back on track.</p>
+<h3 id="the-database-vm">The Database VM</h3>
+<p>Next came the PostgreSQL VM setup. While this was happening, I faced an unrelated issue on my development machine - Homebrew was stuck “pouring some El Capitan tar” despite running on Sonoma. A quick restart resolved that issue, allowing me to install DBeaver to manage my PostgreSQL database.</p>
+<h2 id="postgresql-configuration">PostgreSQL Configuration</h2>
+<p>With the VMs running, it was time to configure PostgreSQL. I created a database but quickly realized I’d forgotten a crucial step - allowing connections from my laptop’s VLAN.</p>
+<p>The fix required editing:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>/etc/postgresql/*/main/postgresql.conf</span></span></code></pre>
+<p>After adding an entry for my VLAN and restarting PostgreSQL, I was able to connect from my development machine and create the database. Progress!</p>
+<h2 id="litellm-proxy-configuration">LiteLLM Proxy Configuration</h2>
+<p>Turning my attention to the LiteLLM proxy VM, I needed to prepare the configuration:</p>
+<ol>
+<li>Modified the environment file to connect to my PostgreSQL database
+<ul>
+<li>Pro tip: The example env file had spaces around the equals signs that needed to be removed</li>
+</ul>
+</li>
+<li>Generated proper salt and master keys for security</li>
+<li>Ran <code>docker-compose up</code> to bring the service online</li>
+</ol>
+<h2 id="adding-external-ai-models">Adding External AI Models</h2>
+<p>With the proxy running, it was time for the exciting part - adding external AI models. I started with Claude by Anthropic:</p>
+<ol>
+<li>Visited the Anthropic console (<a href="https://console.anthropic.com/dashboard">https://console.anthropic.com/dashboard</a>)</li>
+<li>Generated an API token</li>
+<li>Added it to my LiteLLM configuration</li>
+</ol>
+<p>And just like that… success! My Open Web UI was now connected to Claude, OpenAI, and had the potential to connect to any LLM I could get a token for.</p>
+<h2 id="the-result">The Result</h2>
+<p>What started as a modest setup with local models has now transformed into a flexible AI powerhouse. My Open Web UI can now seamlessly switch between:</p>
+<ul>
+<li>Local models via Ollama</li>
+<li>Claude models from Anthropic</li>
+<li>OpenAI’s GPT models</li>
+<li>Potentially any other API-accessible LLM</li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<p>This project reinforced several important concepts:</p>
+<ol>
+<li>Proper infrastructure planning saves headaches down the road</li>
+<li>Separating services into different VMs provides cleaner management</li>
+<li>Database connection issues are often related to network configuration</li>
+<li>Always check for spaces in configuration files!</li>
+</ol>
+</article><hr><p><a href="/blog/">← all posts</a></p></main><footer class="site-footer"><span>© 2026 Matt Hays</span><span class="links"><a href="mailto:hi@matthays.dev">email</a><a href="https://github.com/itsmyfirstname">github</a><a href="/rss.xml">rss</a></span></footer><script>
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme
+          ? root.dataset.theme === "dark"
+          : matchMedia("(prefers-color-scheme: dark)").matches;
+        root.dataset.theme = dark ? "light" : "dark";
+        try {
+          localStorage.setItem("theme", root.dataset.theme);
+        } catch {}
+      });
+    </script></body></html>

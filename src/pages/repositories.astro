@@ -1,0 +1,101 @@
+---
+import Base from "../layouts/Base.astro";
+import { getGitHubStats } from "../lib/github";
+import { GITHUB, GITHUB_USER } from "../consts";
+
+const stats = await getGitHubStats();
+const numbers = stats && [
+  { label: "commits (last year)", value: stats.commitsLastYear },
+  { label: "pull requests", value: stats.pullRequests },
+  { label: "issues", value: stats.issues },
+  { label: "contributed to", value: stats.contributedTo },
+  { label: "stars earned", value: stats.stars },
+];
+---
+
+<Base title="Repositories" description="Open source work and GitHub stats.">
+  <h1>Repositories</h1>
+  <p class="muted">Code lives at <a href={GITHUB}>github.com/{GITHUB_USER}</a>.</p>
+
+  {
+    stats ? (
+      <>
+        <div class="cards">
+          {stats.repos.map((repo) => (
+            <a class="card repo" href={repo.url}>
+              <strong>{repo.nameWithOwner.split("/")[1]}</strong>
+              <span>{repo.description ?? "No description"}</span>
+              <span class="meta">
+                {repo.primaryLanguage && (
+                  <span>
+                    <i class="dot" style={`background:${repo.primaryLanguage.color ?? "var(--muted)"}`} />
+                    {repo.primaryLanguage.name}
+                  </span>
+                )}
+                <span>★ {repo.stargazerCount}</span>
+                <span>⑂ {repo.forkCount}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <h2>Stats</h2>
+        <dl class="stats">
+          {numbers!.map((n) => (
+            <div>
+              <dd>{n.value}</dd>
+              <dt>{n.label}</dt>
+            </div>
+          ))}
+        </dl>
+      </>
+    ) : (
+      <p>GitHub stats are unavailable right now.</p>
+    )
+  }
+</Base>
+
+<style>
+  .repo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .repo .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: auto;
+    padding-top: 0.4rem;
+    font-size: 0.85rem;
+  }
+  .dot {
+    display: inline-block;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+    vertical-align: -0.05rem;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(6.75rem, 1fr));
+    gap: 1rem;
+    margin: 0;
+  }
+  .stats div {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+  }
+  .stats dd {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .stats dt {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>

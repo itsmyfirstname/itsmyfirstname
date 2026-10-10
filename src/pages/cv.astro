@@ -1,0 +1,146 @@
+---
+import Base from "../layouts/Base.astro";
+import resume from "../data/resume.json";
+
+const { basics, work, projects, education, skills, interests } = resume;
+
+/** "2023-06-01" / "2023-06" / "present" -> "Jun 2023" / "Present" */
+function month(value?: string) {
+  if (!value || value === "present") return "Present";
+  const [y, m] = [value.slice(0, 4), value.slice(5, 7)];
+  const d = new Date(Date.UTC(Number(y), Number(m || 1) - 1, 1));
+  return d.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
+}
+const range = (start?: string, end?: string) => `${month(start)} – ${month(end)}`;
+---
+
+<Base title="Resume" description={basics.summary}>
+  <div class="cv">
+    <header>
+      <h1>{basics.name}</h1>
+      <p class="muted">
+        {basics.label} · {basics.location.region} · <a href={`mailto:${basics.email}`}>{basics.email}</a>
+      </p>
+      <p>{basics.summary}</p>
+      <p class="no-print"><button type="button" onclick="window.print()">Save as PDF</button></p>
+    </header>
+
+    <h2>Experience</h2>
+    {
+      work.map((job) => (
+        <section class="entry">
+          <div class="entry-head">
+            <span>
+              <strong>{job.position}</strong>, <a href={job.url}>{job.name}</a>
+            </span>
+            <span class="muted">{range(job.startDate, job.endDate)}</span>
+          </div>
+          <p>{job.summary}</p>
+        </section>
+      ))
+    }
+
+    <h2>Selected projects</h2>
+    {
+      projects.map((p) => (
+        <section class="entry">
+          <div class="entry-head">
+            <strong>{p.name}</strong>
+            <span class="muted">{range(p.startDate, p.endDate)}</span>
+          </div>
+          <p>{p.summary}</p>
+          <ul class="tags">
+            {p.highlights.map((h) => (
+              <li class="tag">{h}</li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+
+    <h2>Skills</h2>
+    <dl class="kv">
+      {
+        skills.map((s) => (
+          <>
+            <dt>{s.name}</dt>
+            <dd>{s.keywords.join(", ")}</dd>
+          </>
+        ))
+      }
+    </dl>
+
+    <h2>Education</h2>
+    {
+      education.map((e) => (
+        <section class="entry">
+          <div class="entry-head">
+            <strong>
+              {e.studyType}, {e.area}
+            </strong>
+            <span class="muted">{range(e.startDate, e.endDate)}</span>
+          </div>
+          <p>
+            <a href={e.url}>{e.institution}</a>, {e.location}
+          </p>
+        </section>
+      ))
+    }
+
+    <h2>Interests</h2>
+    <dl class="kv">
+      {
+        interests.map((i) => (
+          <>
+            <dt>{i.name}</dt>
+            <dd>{i.keywords.join(", ")}</dd>
+          </>
+        ))
+      }
+    </dl>
+  </div>
+</Base>
+
+<style>
+  .entry {
+    margin: 1rem 0 1.5rem;
+  }
+  .entry p {
+    margin: 0.25rem 0;
+  }
+  .entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 1rem;
+  }
+  .kv {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.35rem 1.25rem;
+  }
+  .kv dt {
+    font-weight: 600;
+  }
+  .kv dd {
+    margin: 0;
+  }
+  button {
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: none;
+    color: var(--fg);
+    cursor: pointer;
+  }
+  @media print {
+    .entry {
+      break-inside: avoid;
+    }
+    h2 {
+      margin-top: 1.25rem;
+    }
+  }
+</style>

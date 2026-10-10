@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const groups = (["work", "fun"] as const)
+  .map((category) => ({ category, items: projects.filter((p) => p.data.category === category) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<Base title="Projects" description="Things I've built or am building, at work and for fun.">
+  <h1>Projects</h1>
+  <p class="muted">Things I've built or am building, at work and for fun.</p>
+  {
+    groups.map(({ category, items }) => (
+      <section>
+        <h2>{category}</h2>
+        <div class="cards">
+          {items.map((p) => (
+            <a class="card" href={`/projects/${p.id}/`}>
+              {p.data.image && <img src={p.data.image} alt="" />}
+              <strong>{p.data.title}</strong>
+              <span>{p.data.description}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</Base>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="Matt Hays. Visit matthays.dev">
+  <rect x="1" y="1" width="1198" height="298" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2" />
+  <svg x="60" y="40" width="220" height="220" viewBox="0 0 200 200">
+  <defs>
+    <clipPath id="circle"><circle cx="100" cy="100" r="98" /></clipPath>
+  </defs>
+  <g clip-path="url(#circle)">
+    <!-- background -->
+    <rect width="200" height="200" fill="#cfe3f5" />
+    <circle cx="100" cy="100" r="98" fill="none" stroke="#1f6feb" stroke-width="4" />
+
+    <!-- hoodie -->
+    <path d="M22,200 C24,170 46,150 76,144 L124,144 C154,150 176,170 178,200 Z" fill="#62676d" />
+    <path d="M70,146 C78,168 122,168 130,146 C124,140 76,140 70,146 Z" fill="#4e5257" />
+    <path d="M90,162 L88,190 M110,162 L112,190" stroke="#e9e9e9" stroke-width="3" stroke-linecap="round" />
+    <circle cx="88" cy="191" r="3" fill="#e9e9e9" />
+    <circle cx="112" cy="191" r="3" fill="#e9e9e9" />
+
+    <!-- neck -->
+    <path d="M84,132 L84,150 C92,158 108,158 116,150 L116,132 Z" fill="#d9a07c" />
+
+    <!-- ears -->
+    <ellipse cx="65" cy="103" rx="7" ry="10" fill="#e8b48f" />
+    <ellipse cx="135" cy="103" rx="7" ry="10" fill="#e8b48f" />
+    <ellipse cx="65" cy="103" rx="3" ry="5" fill="#d29a74" />
+    <ellipse cx="135" cy="103" rx="3" ry="5" fill="#d29a74" />
+
+    <!-- face -->
+    <ellipse cx="100" cy="102" rx="35" ry="41" fill="#e8b48f" />
+
+    <!-- hair at the temples -->
+    <path d="M65,94 C64,86 66,82 70,80 L72,100 Z" fill="#3b2619" />
+    <path d="M135,94 C136,86 134,82 130,80 L128,100 Z" fill="#3b2619" />
+
+    <!-- beard -->
+    <path d="M66,102 L71,102 C73,114 80,119 88,119 L112,119 C120,119 127,114 129,102 L134,102 C135,134 121,148 100,148 C79,148 65,134 66,102 Z" fill="#4a3020" />
+    <!-- mustache -->
+    <path d="M85,122 C89,115 111,115 115,122 C109,119 91,119 85,122 Z" fill="#4a3020" />
+    <!-- open mouth ("oh!") -->
+    <ellipse cx="100" cy="128" rx="5.5" ry="6.5" fill="#2a120d" stroke="#e8b48f" stroke-width="1.5" />
+    <ellipse cx="100" cy="131.5" rx="3.5" ry="2.3" fill="#d4736a" />
+
+    <!-- nose -->
+    <path d="M100,101 C97,109 95,112 99,114 C101,115 104,114 105,112" fill="none" stroke="#c98a65" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- eyes -->
+    <ellipse cx="86" cy="100" rx="4.5" ry="5.5" fill="#3a2418" />
+    <ellipse cx="114" cy="100" rx="4.5" ry="5.5" fill="#3a2418" />
+    <circle cx="87.5" cy="98" r="1.6" fill="#fff" />
+    <circle cx="115.5" cy="98" r="1.6" fill="#fff" />
+    <!-- raised eyebrows -->
+    <path d="M78,90 Q86,85 94,89" fill="none" stroke="#3b2619" stroke-width="4" stroke-linecap="round" />
+    <path d="M106,89 Q114,85 122,90" fill="none" stroke="#3b2619" stroke-width="4" stroke-linecap="round" />
+
+    <!-- cap -->
+    <path d="M63,78 C61,44 80,30 100,30 C120,30 139,44 137,78 Z" fill="#6f7377" />
+    <path d="M100,30 L100,48" stroke="#5c6064" stroke-width="2" />
+    <circle cx="100" cy="31" r="3" fill="#5c6064" />
+    <!-- patch -->
+    <rect x="80" y="48" width="40" height="18" rx="5" fill="#f1ece0" stroke="#2f3133" stroke-width="2" />
+    <text x="100" y="62" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="13" fill="#2f3133">MH</text>
+    <!-- brim -->
+    <path d="M59,78 C76,71 124,71 141,78 C145,81 143,84 138,84 C114,79 86,79 62,84 C57,84 55,81 59,78 Z" fill="#3a3c3f" />
+  </g>
+</svg>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <text x="330" y="118" font-size="64" font-weight="700" fill="#1f2328">Hi, I'm Matt</text>
+    <text x="332" y="170" font-size="28" fill="#59636e">Software engineer · DevOps, data and homelab tinkering</text>
+    <text x="332" y="232" font-size="30" font-weight="600" fill="#0969da">matthays.dev →</text>
+  </g>
+</svg>

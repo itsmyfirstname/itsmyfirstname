@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+import PostList from "../components/PostList.astro";
+import { getPosts } from "../lib/posts";
+import { EMAIL } from "../consts";
+
+const recent = (await getPosts()).slice(0, 5);
+---
+
+<Base>
+  <h1>Hi, I'm Matt.</h1>
+  <p>
+    I'm a software engineer based in North Carolina. After serving in the US Marine Corps, I moved into tech and built
+    a foundation in DevOps and data engineering.
+  </p>
+  <p>
+    I like building scalable solutions and automating workflows with AWS, Python and Databricks: optimizing processes,
+    refactoring systems to pay down technical debt, and building CI/CD pipelines and GitHub Actions that make deploys
+    boring.
+  </p>
+  <p>
+    Outside of work I'm usually tinkering with my homelab, 3D printing, or learning about horology. If you want to
+    collaborate or just say hi, reach me at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+  </p>
+
+  {
+    recent.length > 0 && (
+      <>
+        <h2>Recent writing</h2>
+        <PostList posts={recent} />
+        <p>
+          <a href="/blog/">All posts →</a>
+        </p>
+      </>
+    )
+  }
+</Base>

@@ -1,0 +1,26 @@
+---
+import Base from "../../layouts/Base.astro";
+import PostList from "../../components/PostList.astro";
+import { getPosts } from "../../lib/posts";
+
+const posts = await getPosts();
+const tags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+---
+
+<Base title="Blog" description="Musings on software, homelabs and whatever else.">
+  <h1>Blog</h1>
+  <p class="muted">Musings on software, homelabs and whatever else. <a href="/rss.xml">RSS</a></p>
+  {
+    tags.length > 0 && (
+      <ul class="tags">
+        {tags.map((t) => (
+          <li>
+            <a href={`/blog/tags/${t}/`}>#{t}</a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  <hr />
+  <PostList posts={posts} />
+</Base>

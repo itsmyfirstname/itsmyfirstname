@@ -1,91 +1,39 @@
-name: Deploy site
+name: Deploy
 
 on:
   push:
-    branches:
-      - master
-      - main
-    paths:
-      - "assets/**"
-      - "**.bib"
-      - "**.html"
-      - "**.js"
-      - "**.liquid"
-      - "**/*.md"
-      - "**.yml"
-      - "Gemfile"
-      - "Gemfile.lock"
-      - "!.github/workflows/axe.yml"
-      - "!.github/workflows/broken-links.yml"
-      - "!.github/workflows/deploy-docker-tag.yml"
-      - "!.github/workflows/deploy-image.yml"
-      - "!.github/workflows/docker-slim.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
-      - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
-      - "!CONTRIBUTING.md"
-      - "!CUSTOMIZE.md"
-      - "!FAQ.md"
-      - "!INSTALL.md"
-      - "!README.md"
+    branches: [master]
   pull_request:
-    branches:
-      - master
-      - main
-    paths:
-      - "assets/**"
-      - "**.bib"
-      - "**.html"
-      - "**.js"
-      - "**.liquid"
-      - "**/*.md"
-      - "**.yml"
-      - "Gemfile"
-      - "Gemfile.lock"
-      - "!.github/workflows/axe.yml"
-      - "!.github/workflows/broken-links.yml"
-      - "!.github/workflows/deploy-docker-tag.yml"
-      - "!.github/workflows/deploy-image.yml"
-      - "!.github/workflows/docker-slim.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
-      - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
-      - "!CONTRIBUTING.md"
-      - "!CUSTOMIZE.md"
-      - "!FAQ.md"
-      - "!INSTALL.md"
-      - "!README.md"
   workflow_dispatch:
+  # Daily rebuild keeps the GitHub stats on /repositories fresh.
+  schedule:
+    - cron: "17 9 * * *"
 
 permissions:
   contents: write
 
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
 jobs:
-  deploy:
-    # available images: https://github.com/actions/runner-images#available-images
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          ruby-version: "3.2.2"
-          bundler-cache: true
-      - name: Install and Build 🔧
-        run: |
-          cd ./docs
-          pip3 install --upgrade jupyter
-          export JEKYLL_ENV=production
-          bundle install
-          bundle exec jekyll build
-      - name: Purge unused CSS 🧹
-        run: |
-          cd ./docs
-          npm install -g purgecss
-          purgecss -c purgecss.config.js
-      - name: Deploy 🚀
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Cloudflare serves the gh-pages branch, so publish the built site there.
+      - name: Publish to gh-pages
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: docs/_site
+          folder: dist
+          branch: gh-pages
+          clean: true

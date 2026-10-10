@@ -1,0 +1,96 @@
+---
+import "../styles/global.css";
+import { SITE_TITLE, SITE_DESCRIPTION, EMAIL, GITHUB } from "../consts";
+
+interface Props {
+  title?: string;
+  description?: string;
+  type?: "website" | "article";
+}
+
+const { title, description = SITE_DESCRIPTION, type = "website" } = Astro.props;
+const fullTitle = title ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname;
+
+const nav = [
+  { href: "/blog/", label: "blog" },
+  { href: "/projects/", label: "projects" },
+  { href: "/repositories/", label: "repos" },
+  { href: "/cv/", label: "resume" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta name="twitter:card" content="summary" />
+
+    <script is:inline>
+      try {
+        const t = localStorage.getItem("theme");
+        if (t) document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Matt Hays</a>
+      <nav>
+        {
+          nav.map((item) => (
+            <a href={item.href} aria-current={path.startsWith(item.href) ? "page" : undefined}>
+              {item.label}
+            </a>
+          ))
+        }
+        <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <span>© {new Date().getFullYear()} Matt Hays</span>
+      <span class="links">
+        <a href={`mailto:${EMAIL}`}>email</a>
+        <a href={GITHUB}>github</a>
+        <a href="/rss.xml">rss</a>
+      </span>
+    </footer>
+
+    <script is:inline>
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme
+          ? root.dataset.theme === "dark"
+          : matchMedia("(prefers-color-scheme: dark)").matches;
+        root.dataset.theme = dark ? "light" : "dark";
+        try {
+          localStorage.setItem("theme", root.dataset.theme);
+        } catch {}
+      });
+    </script>
+  </body>
+</html>
